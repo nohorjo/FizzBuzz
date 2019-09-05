@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+import generateFizzBuzzList from './FizzBuzzGenerator';
+
 export default class FizzBuzzComponent extends Component {
     
     constructor(props) {
@@ -11,9 +13,7 @@ export default class FizzBuzzComponent extends Component {
     }
 
     handleGenerateClick() {
-        this.setState({result: [
-            '1', '2', 'Fizz', '4', 'Buzz', 'Fizz', '7', '8', 'Fizz', 'Buzz', '11', 'Fizz', '13', '14', 'FizzBuzz',
-        ]});
+        this.setState({result: generateFizzBuzzList()});
     }
 
     render() {
