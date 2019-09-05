@@ -6,8 +6,45 @@ describe('FizzBuzzGenerator', () => {
     it('generates with default params', () => {
         expect(generateFizzBuzzList()).toEqual(FIZZBUZZ_TO_100);
     });
+
     it('generates list up to limit', () => {
         const limit = 15;
         expect(generateFizzBuzzList({limit})).toEqual(FIZZBUZZ_TO_100.slice(0, limit));
+    });
+
+    it('generates with custom terms', () => {
+        const expected = FIZZBUZZ_TO_100.map(v => {
+            switch (v) {
+                case 'FizzBuzz':
+                    return 'FooBar';
+                case 'Fizz':
+                    return 'Foo';
+                case 'Buzz':
+                    return 'Bar';
+            }
+
+            return v;
+        });
+
+        expect(generateFizzBuzzList({
+            terms: [
+                ['Foo', 3],
+                ['Bar', 5],
+            ],
+        })).toEqual(expected);
+    });
+
+    it('generates with custom modders', () => {
+        const expected = [
+            '1', 'Foo', '3', 'FooBar', '5', 'Foo', '7', 'FooBar', '9', 'Foo'
+        ];
+
+        expect(generateFizzBuzzList({
+            limit: 10,
+            terms: [
+                ['Foo', 2],
+                ['Bar', 4],
+            ],
+        })).toEqual(expected);
     });
 });
