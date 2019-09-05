@@ -73,6 +73,12 @@ export default class FizzBuzzComponent extends Component {
         }
     }
 
+    handleRemoveTerm(index) {
+        const { terms } = this.state;
+        terms.splice(index, 1);
+        this.setState({terms});
+    }
+
     render() {
         return (
             <div>
@@ -98,6 +104,11 @@ export default class FizzBuzzComponent extends Component {
                             type="number"
                             value={modder}
                             onChange={event => this.handleTermOptionChange(i, event.target.value, false)}
+                        />
+                        <input
+                            type="button"
+                            value="&times;"
+                            onClick={() => this.handleRemoveTerm(i)}
                         />
                     </div>
                 ))}
