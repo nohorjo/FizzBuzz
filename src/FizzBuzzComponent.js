@@ -22,22 +22,43 @@ export default class FizzBuzzComponent extends Component {
         };
     }
 
+    /**
+     * Generates sequence and sets it in state
+     */
     handleGenerateClick() {
         const { limit, terms } = this.state;
 
         this.setState({result: generateFizzBuzzList({limit, terms})});
     }
 
+    /**
+     * Updates limit
+     *
+     * @param {SyntheticEvent} event - the change event
+     */
     handleLimitChange(event) {
         this.setState({limit: parseInt(event.target.value)});
     }
 
+    /**
+     * Sets changes to term inputs
+     *
+     * @param {number} index - the index of the term
+     * @param {string|number} value - the value to set
+     * @param {boolean} isTerm - set to true for setting term value, else for modder value
+     */
     handleTermOptionChange(index, value, isTerm) {
         const { terms } = this.state;
         terms[index][isTerm ? 0 : 1] = value;
         this.setState({terms});
     }
 
+    /**
+     * Sets values for new term
+     *
+     * @param {string|number} value - the value to set
+     * @param {boolean} isTerm - set to true for setting term value, else for modder value
+     */
     handleNewTermChange(value, isTerm) {
         let {
             newTerm,
@@ -56,6 +77,9 @@ export default class FizzBuzzComponent extends Component {
         });
     }
 
+    /**
+     * Adds term to list
+     */
     handleAddTerm() {
         const {
             terms,
@@ -73,6 +97,11 @@ export default class FizzBuzzComponent extends Component {
         }
     }
 
+    /**
+     * Removes term from list
+     *
+     * @param {number} index - the index to delete
+     */
     handleRemoveTerm(index) {
         const { terms } = this.state;
         terms.splice(index, 1);
