@@ -1,3 +1,5 @@
+An implementation of FizzBuzz that is configurable and displays results in a web page
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
