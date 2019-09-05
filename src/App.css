@@ -16,3 +16,8 @@
 .App-link {
   color: #61dafb;
 }
+
+input {
+    max-width: 40%;
+    margin: 3px 1px;
+}
