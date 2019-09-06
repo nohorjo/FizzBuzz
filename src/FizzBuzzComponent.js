@@ -3,16 +3,18 @@ import React, { Component } from 'react';
 import generateFizzBuzzList from './FizzBuzzGenerator';
 
 export default class FizzBuzzComponent extends Component {
+
+    static defaultProps = {
+        numbers: Array(100).fill(0).map((_, i) => i + 1),
+    };
     
     constructor(props) {
         super(props);
 
-        this.handleLimitChange = this.handleLimitChange.bind(this);
         this.handleAddTerm = this.handleAddTerm.bind(this);
 
         this.state = {
             result: [],
-            limit: 100,
             terms: [
                 ['Fizz', 3],
                 ['Buzz', 5]
@@ -26,18 +28,10 @@ export default class FizzBuzzComponent extends Component {
      * Generates sequence and sets it in state
      */
     handleGenerateClick() {
-        const { limit, terms } = this.state;
-
-        this.setState({result: generateFizzBuzzList({limit, terms})});
-    }
-
-    /**
-     * Updates limit
-     *
-     * @param {SyntheticEvent} event - the change event
-     */
-    handleLimitChange(event) {
-        this.setState({limit: parseInt(event.target.value)});
+        this.setState({result: generateFizzBuzzList({
+            terms: this.state.terms,
+            numbers: this.props.numbers,
+        })});
     }
 
     /**
@@ -111,16 +105,6 @@ export default class FizzBuzzComponent extends Component {
     render() {
         return (
             <div>
-                <div>
-                    <label>Limit</label>
-                    <div>
-                        <input
-                            type="number"
-                            value={this.state.limit}
-                            onChange={this.handleLimitChange}
-                        />
-                    </div>
-                </div>
                 <label>Terms</label>
                 {this.state.terms.map(([term, modder], i) => (
                     <div key={`term${i}`}>

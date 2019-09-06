@@ -8,21 +8,19 @@
 /**
  * Function to generate FizzBuzz results
  *
- * @param {number} [opts.limit=100] - number of terms to calculate
  * @param {Array.<Term>} [opts.terms=[['Fizz', 3], ['Buzz', 5]]] - terms to use
+ * @param {Array.<number>} [opts.numbers={1 - 100}] - number list
  *
  * @returns {Arrar.<string>} - the results of the generation
  */
 export default function({
-    limit = 100,
     terms = [
         ['Fizz', 3],
         ['Buzz', 5],
     ],
+    numbers = Array(100).fill(0).map((_, i) => i + 1),
 } = {}) {
-    const results = [];
-
-    for (let i = 1; i <= limit; i++) {
+    return numbers.map(i => {
         let string = '';
         
         terms.forEach(([term, modder]) => {
@@ -33,8 +31,6 @@ export default function({
         if (!string)
             string = String(i);
 
-        results.push(string);
-    }
-
-    return results;
+        return string;
+    });
 }

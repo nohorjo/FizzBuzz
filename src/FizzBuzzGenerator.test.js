@@ -7,9 +7,9 @@ describe('FizzBuzzGenerator', () => {
         expect(generateFizzBuzzList()).toEqual(FIZZBUZZ_TO_100);
     });
 
-    it('generates list up to limit', () => {
-        const limit = 15;
-        expect(generateFizzBuzzList({limit})).toEqual(FIZZBUZZ_TO_100.slice(0, limit));
+    it('generates list with custom numbers', () => {
+        const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
+        expect(generateFizzBuzzList({numbers})).toEqual(FIZZBUZZ_TO_100.slice(0, 15));
     });
 
     it('generates with custom terms', () => {
@@ -40,7 +40,7 @@ describe('FizzBuzzGenerator', () => {
         ];
 
         expect(generateFizzBuzzList({
-            limit: 10,
+            numbers: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
             terms: [
                 ['Foo', 2],
                 ['Bar', 4],
